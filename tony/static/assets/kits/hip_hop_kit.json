@@ -1,0 +1,10 @@
+{
+	"samples": [
+		"./static/assets/audio/boom_bap_kick.wav",
+		"./static/assets/audio/boom_bap_snare.wav",
+		"./static/assets/audio/hihat.wav",
+		"./static/assets/audio/ride.wav"
+	],
+	"sequence": [],
+	"bpm": 97
+}

@@ -1,0 +1,10 @@
+{
+	"samples": [
+		"./static/assets/audio/kick.wav",
+		"./static/assets/audio/snare.wav",
+		"./static/assets/audio/closed_hat.wav",
+		"./static/assets/audio/open_hat.wav"
+	],
+	"sequence": [],
+	"bpm": 120
+}
