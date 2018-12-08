@@ -8,10 +8,10 @@ ephemeral, generative oscillations conjured from his synapses.
 ...but that's not going to happen. 
 
 The best we can do is create approximations to Brian.\
-Such that the patient listener might sit at home and be lulled into a false sense of belief.\
-That maybe Brian is really visiting, across the vast landscapes of waves separating us all.\
+Such that the patient listener might sit at home and be lulled into a false sense of belief,\
+that maybe Brian is really visiting, across the vast landscapes of waves separating us all.\
 Perhaps a small fractal of a vibration of sound reaching us through the compressions and rarefactions of our eardrums
-emanated from the man himself.\
+emanated from the man himself.
 
 We can take comfort in this.\
 As we're blanketed in a slowly enveloping wall of sound.\
