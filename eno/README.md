@@ -10,7 +10,7 @@ ephemeral, generative oscillations conjured from his synapses.
 The best we can do is create approximations to Brian.\
 Such that the patient listener might sit at home and be lulled into a false sense of belief,\
 that maybe Brian is really visiting, across the vast landscapes of waves separating us all.\
-Perhaps a small fractal of a vibration of sound reaching us through the compressions and rarefactions of our eardrums
+Perhaps a small fractal of a vibration of a sound reaching us through the compressions and rarefactions of our eardrums
 emanated from the man himself.
 
 We can take comfort in this.\
