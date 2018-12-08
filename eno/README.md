@@ -1,13 +1,13 @@
 # enojs
 
 Look, we all want Brian to come over for a cup of tea as we bask in the infinite melodies of his dulcet tones, 
-ephemeral, generative vibrations conjured from his synapses.
+ephemeral, generative oscillations conjured from his synapses.
 
 ...but that's not going to happen. 
 
 The best we can do is create approximations to Brian. 
 Such that the patient listener might sit at home and be lulled into a false sense of belief.
-That perhaps Brian is really visiting, across the vast landscapes of vibration separating us all.
+That perhaps Brian is really visiting, across the vast landscapes of waves separating us all.
 Perhaps a small fractal of a vibration of sound reaching us through the compressions and rarefactions of our eardrums
 emanated from the man himself.
 
