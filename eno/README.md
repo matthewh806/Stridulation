@@ -3,6 +3,8 @@
 Look, we all want Brian to come over for a cup of tea as we bask in the infinite melodies of his dulcet tones, 
 ephemeral, generative oscillations conjured from his synapses.
 
+![brian](https://github.com/matthewh806/Stridulation/blob/master/eno/img/eno.jpeg)
+
 ...but that's not going to happen. 
 
 The best we can do is create approximations to Brian. 
