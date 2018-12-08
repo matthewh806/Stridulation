@@ -1,5 +1,12 @@
 #main_body {
 	text-align: center;
+	text-align: center;
+	font-family: 'Lucida Console', Monaco, monospace;
+	font-size: 2em;
+}
+
+#main_body h1 {
+
 }
 
 .eq {
