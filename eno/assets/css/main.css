@@ -1,3 +1,13 @@
+#main_body {
+	text-align: center;
+}
+
+.eq {
+	display: block;
+	overflow:auto;
+	display: inline-block 
+}
+
 .eq .slider-wrapper {
 	float: left;
 }
@@ -9,7 +19,28 @@
 
 .eq label {
 	color: #777;
+	margin-top: 20px;
 	display: block;
 	font-size: 0.7em;
 	text-align: center;
+	font-family: 'Lucida Console', Monaco, monospace;
+}
+
+.audio-toggle-wrapper {
+	width: 200;
+	margin: 50px;
+	display: block;
+	text-align: center
+}
+
+.audio-toggle-wrapper .eno-head-btn {
+	width: 150px;
+	vertical-align:middle;
+	display: inline-block
+}
+
+.audio-toggle-wrapper span {
+	font-family: 'Lucida Console', Monaco, monospace;
+	font-size: 2em;
+	display: inline-block
 }

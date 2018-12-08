@@ -2,8 +2,6 @@ import Tone from "Tone";
 import noUiSlider from "nouislider";
 import { DuoSynth } from "./instruments/synth";
 
-console.log("eno-ugh!");
-
 const EQUALISER_CENTER_FREQUENCIES = [
 	100, 125, 160, 200, 250, 315, 400, 500, 630, 800,
 	1000, 1250, 1600, 2000, 2500, 3150, 4000, 500, 6300,
@@ -27,6 +25,10 @@ let equalizer = EQUALISER_CENTER_FREQUENCIES.map(frequency => {
 	return filter;
 });
 
+let audioToggle = document.querySelector(".eno-head-btn");
+audioToggle.addEventListener("click", toggleAudio, false);
+let audioToggleText = document.querySelector(".audio-toggle-btn-text");
+
 function initEqualizerUI(container, equalizer) {
 	equalizer.forEach(eqBand => {
 		let freq = eqBand.frequency.value;
@@ -49,13 +51,27 @@ function initEqualizerUI(container, equalizer) {
 		});
 		slider.noUiSlider.on('update', ([value]) => {
 			eqBand.gain.value = +value;
-			console.log(eqBand.gain.value);
-		});
+ 		});
 
 		wrapper.appendChild(slider);
 		wrapper.appendChild(label);
 		container.appendChild(wrapper);
 	});
+}
+
+function toggleAudio() {
+	let state = Tone.Transport.state;
+
+	if(state == 'started') {
+		console.log('eno-ugh!')
+		audioToggleText.style.display = "none";
+		Tone.Transport.stop();
+	} else {
+		// Paused or Stopped
+		console.log('eno!');
+		audioToggleText.style.display = "inline-block";
+		Tone.Transport.start();
+	}
 }
 
 let echo = new Tone.FeedbackDelay('16n', 0.2);
