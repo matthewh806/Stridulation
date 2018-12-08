@@ -18,10 +18,24 @@ And we are safe.
 Safe in Brian's hands.
 
 ## Building
+Clone this repository:
+```
+git clone git@github.com:matthewh806/Stridulation.git
+```
+Navigate to the eno directory `cd Stridulation/eno`
+
+Run these two commands:
+
+```
+npm install
+npm start
+```
+
+This will start a local server at 0.0.0.0 port=8000
 
 ## Credits
 For this project first and foremost I would like to credit Brian Eno, without whom none of this would've been possible.
 I made use of [tonejs](https://tonejs.github.io/) and [nouislider](https://refreshless.com/nouislider/)
 
-The inspiration for this project comes from a great blog post called (Javascript Systems Music)[http://teropa.info/blog/2016/07/28/javascript-systems-music.html#the-notes-and-intervals-in-music-for-airports] by Tero Parviainen,
+The inspiration for this project comes from a great blog post called [Javascript Systems Music](http://teropa.info/blog/2016/07/28/javascript-systems-music.html#the-notes-and-intervals-in-music-for-airports) by Tero Parviainen,
 so if you're interested in what you hear here, audio, programming and experimental music (or all!) its well worth a read.
