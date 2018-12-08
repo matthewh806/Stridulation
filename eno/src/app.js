@@ -1,7 +1,14 @@
 import Tone from "Tone";
+import noUiSlider from "nouislider";
 import { DuoSynth } from "./instruments/synth";
 
 console.log("eno-ugh!");
+
+const EQUALISER_CENTER_FREQUENCIES = [
+	100, 125, 160, 200, 250, 315, 400, 500, 630, 800,
+	1000, 1250, 1600, 2000, 2500, 3150, 4000, 500, 6300,
+	8000, 10000
+]
 
 function makeSynth() {
 	return new DuoSynth();
@@ -12,6 +19,45 @@ let rightSynth = makeSynth();
 
 let leftPanner = new Tone.Panner(-0.5);
 let rightPanner = new Tone.Panner(0.5);
+
+let equalizer = EQUALISER_CENTER_FREQUENCIES.map(frequency => {
+	let filter = new Tone.Filter(frequency, 'peaking');
+	filter.Q.value = 4.31; // magic number!
+	filter.gain.value = 0;
+	return filter;
+});
+
+function initEqualizerUI(container, equalizer) {
+	equalizer.forEach(eqBand => {
+		let freq = eqBand.frequency.value;
+
+		let wrapper = document.createElement('div');
+		let slider = document.createElement('div');
+		let label = document.createElement('label');
+
+		wrapper.classList.add('slider-wrapper');
+		slider.classList.add('slider');
+		label.textContent = freq >= 1000? `${freq/1000}K` : freq;
+
+		noUiSlider.create(slider, {
+			start: 0,
+			range: {min: -12, max: 12},
+			step: 0.1,
+			connect: true,
+			orientation: 'vertical',
+			direction: 'rtl',
+		});
+		slider.noUiSlider.on('update', ([value]) => {
+			eqBand.gain.value = +value;
+			console.log(eqBand.gain.value);
+		});
+
+		wrapper.appendChild(slider);
+		wrapper.appendChild(label);
+		container.appendChild(wrapper);
+	});
+}
+
 let echo = new Tone.FeedbackDelay('16n', 0.2);
 let delay = Tone.context.createDelay(6.0);
 let delayFade = Tone.context.createGain();
@@ -21,8 +67,15 @@ delayFade.gain.value = 0.75;
 
 leftSynth.synth.connect(leftPanner);
 rightSynth.synth.connect(rightPanner);
-leftPanner.connect(echo);
-rightPanner.connect(echo);
+
+leftPanner.connect(equalizer[0]);
+rightPanner.connect(equalizer[0]);
+
+equalizer.forEach((eqBand, idx) => {
+	let nodeToConnect = (idx < equalizer.lenth-1) ? equalizer[idx+1] : echo;
+	eqBand.connect(nodeToConnect);
+})
+
 echo.toMaster();
 echo.connect(delay);
 delay.connect(Tone.context.destination);
@@ -61,3 +114,4 @@ new Tone.Loop(time => {
 }, '37m').start();
 
 Tone.Transport.start();
+initEqualizerUI(document.querySelector('.eq'), equalizer);
