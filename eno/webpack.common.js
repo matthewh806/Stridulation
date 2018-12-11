@@ -3,11 +3,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
-
-var definePlugin = new webpack.DefinePlugin({
-    __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
-    DEBUG: false
-})
+const copyWebpackPlugin = require('copy-webpack-plugin');
+const writeFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
 
@@ -15,10 +12,7 @@ module.exports = {
 
     mode: 'development',
     devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist'
-    },
-
+    
     output: {
         path: path.resolve(__dirname, 'build'),
         publicPath: '/build/',
@@ -43,9 +37,22 @@ module.exports = {
         ]
     },
 
+    devServer: {
+        contentBase: path.resolve(__dirname, 'build')
+    },
+
     plugins: [
         new cleanWebpackPlugin(['dist']),
-        definePlugin
+        new writeFilePlugin(),
+        new copyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'index.html'),
+                to: path.resolve(__dirname, 'build')
+            },
+            {
+                from: path.resolve(__dirname, 'assets', '**', '*'),
+                to: path.resolve(__dirname, 'build')
+            }
+        ])
     ]
-
 };
