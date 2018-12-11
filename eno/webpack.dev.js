@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js')
 
@@ -10,6 +11,10 @@ var definePlugin = new webpack.DefinePlugin({
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
+
+    devServer: {
+        contentBase: path.resolve(__dirname, 'build')
+    },
     
     plugins: [
         definePlugin
