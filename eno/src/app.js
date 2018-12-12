@@ -29,6 +29,25 @@ let audioToggle = document.querySelector(".eno-head-btn");
 audioToggle.addEventListener("click", toggleAudio, false);
 let audioToggleText = document.querySelector(".audio-toggle-btn-text");
 
+let volumeSlider = document.querySelector('.volume-slider');
+
+let volume = new Tone.Volume(-12);
+
+noUiSlider.create(volumeSlider, {
+	start: -14,
+	range: {min: -20, max: -10},
+	step: 1,
+	connect: true,
+	orientation: 'vertical',
+	direction: 'rtl'
+});
+
+console.log(volume.volume.value);
+
+volumeSlider.noUiSlider.on('update', ([value]) => {
+	volume.volume.value = parseFloat(value);
+});
+
 function initEqualizerUI(container, equalizer) {
 	equalizer.forEach(eqBand => {
 		let freq = eqBand.frequency.value;
@@ -92,9 +111,11 @@ equalizer.forEach((eqBand, idx) => {
 	eqBand.connect(nodeToConnect);
 })
 
-echo.toMaster();
+echo.connect(volume)
+volume.toMaster();
 echo.connect(delay);
-delay.connect(Tone.context.destination);
+delay.connect(volume);
+volume.connect(Tone.context.destination);
 delay.connect(delayFade);
 delayFade.connect(delay);
 

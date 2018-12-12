@@ -30,6 +30,6 @@ export class DuoSynth extends Instrument {
 			},
 			vibratoRate: 0.5,
 			vibratoAmount: 0.1
-		}), -20);
+		}), -6);
 	}
 }
