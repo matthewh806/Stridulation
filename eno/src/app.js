@@ -78,6 +78,25 @@ function initEqualizerUI(container, equalizer) {
 	});
 }
 
+function initFFTUI(canvas) {
+	return canvas.getContext('2d');
+}
+
+function drawFFT(ctx, values) {
+	var canvasWidth = ctx.canvas.width;
+	var canvasHeight = ctx.canvas.height;
+	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+	var barWidth = canvasWidth / fft.size;
+	for(var i = 0, len = values.length; i < len; i++) {
+		var x = canvasWidth * (i / len);
+		var y = (values[i] + 140) * 2;
+
+		ctx.fillStyle = "rgba(0, 0, 0, " + i / len + ")";
+		ctx.fillRect(x, canvasHeight - y, barWidth, canvasHeight);
+	}
+}
+
 function toggleAudio() {
 	let state = Tone.Transport.state;
 
@@ -97,6 +116,8 @@ let echo = new Tone.FeedbackDelay('16n', 0.2);
 let delay = Tone.context.createDelay(6.0);
 let delayFade = Tone.context.createGain();
 
+let fft = new Tone.FFT(32);
+
 delay.delayTime.value = 6.0;
 delayFade.gain.value = 0.75;
 
@@ -111,11 +132,10 @@ equalizer.forEach((eqBand, idx) => {
 	eqBand.connect(nodeToConnect);
 });
 
-echo.connect(volume)
-volume.toMaster();
+echo.connect(fft);
+fft.toMaster();
 echo.connect(delay);
-delay.connect(volume);
-volume.connect(Tone.context.destination);
+delay.connect(Tone.context.destination);
 delay.connect(delayFade);
 delayFade.connect(delay);
 
@@ -151,4 +171,14 @@ new Tone.Loop(time => {
 }, '37m').start();
 
 Tone.Transport.start();
+
 initEqualizerUI(document.querySelector('.eq'), equalizer);
+let fftCtx = initFFTUI(document.getElementById('fft-canvas'));
+
+function loop() {
+	requestAnimationFrame(loop);
+	drawFFT(fftCtx, fft.getValue());
+}
+
+loop();
+
