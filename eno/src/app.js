@@ -81,7 +81,7 @@ function initEqualizerUI(container, equalizer) {
 function toggleAudio() {
 	let state = Tone.Transport.state;
 
-	if(state == 'started') {
+	if(state === 'started') {
 		console.log('eno-ugh!')
 		audioToggleText.style.display = "none";
 		Tone.Transport.stop();
@@ -109,7 +109,7 @@ rightPanner.connect(equalizer[0]);
 equalizer.forEach((eqBand, idx) => {
 	let nodeToConnect = (idx < equalizer.lenth-1) ? equalizer[idx+1] : echo;
 	eqBand.connect(nodeToConnect);
-})
+});
 
 echo.connect(volume)
 volume.toMaster();
